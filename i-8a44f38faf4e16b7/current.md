@@ -11,6 +11,6 @@ status: open
 3. 列出 `D:\wb-share\` 里的文件名（只列名字，不读内容）。
 
 完成后：
-- 把回报发到 Pachat 群里（只写单号 TEST-001 和三项结果，不要写 token）；
+- 把回报发到**取单专用群**（就是你收到设置单的那个群；只写单号 TEST-001 和三项结果，不要写 token）；
 - 同时在本机 `D:\agent-inbox\reports\TEST-001.md` 存一份同样的回报；
 - 把本单 id 记入 `D:\agent-inbox\state.txt` 的 last_id。

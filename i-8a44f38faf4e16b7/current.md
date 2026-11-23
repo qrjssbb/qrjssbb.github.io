@@ -1,27 +1,28 @@
-id: VID-003
+id: VID-004
 token: c910a74333cf1eb92c4f3a64
 status: open
 ---
-# 任务单 VID-003（两部分：音频任务续办 + 重复下载清理）
+# 任务单 VID-004（装 rclone + 用户点一次授权 + 补传 Drive）
 
-本单合并两件事。第一部分就是上一张 VID-002（若你还没执行，照此办；若已执行完，跳过并在回报里注明）。第二部分是清理 Muse 浏览器任务误点造成的重复下载。
+用户已拍板：装 rclone，他本人点一次 Google 授权，之后你无人值守把 VID-003 卡住的两处上传补完。
 
-## 第一部分：35 集抽音频 + 传 Drive（= VID-002 内容）
-**先判据**：如果 `D:\agent-inbox\audio\` 里已齐 35 个 mp3、且 Drive「生化讲义音频」文件夹已有 35 个文件 → 本部分已完成，跳过。
-否则照下面做：
-- 源：`D:\03 2026届414、415生物化学一轮满分知识点精讲课程\` 里 35 个 mp4（001～035），原视频不删不改。
-- 用本机 ffmpeg 抽音频：单声道、采样率 16000、mp3 码率 32k，输出到 `D:\agent-inbox\audio\`，文件名与原视频同名换后缀。没有 ffmpeg 就发 `[取单待确认] VID-003` 说明，不要擅自装软件。
-- 传到用户 Google Drive 新建文件夹「生化讲义音频」，35 个全传，核对文件数和大小。不分享、不生成公开链接。
+## 第一步：装 rclone
+- 官方渠道二选一：winget `winget install -e --id Rclone.Rclone`，或从 rclone.org 下 Windows amd64 zip 解压到 `D:\agent-inbox\tools\rclone\`。装完 `rclone version` 能出版本号才算好。
+- 不要用第三方下载站的包。
 
-## 第二部分：清理重复下载 + 解压讲义
-背景：Muse 的浏览器任务在 QQ 邮箱分享页重复点了下载，Chrome 下载文件夹里堆了多份同一个讲义 zip（每份 222.2 MB）。从文件层面收尾：
-1. 在 Chrome 默认下载目录（一般是 `C:\Users\21718\Downloads`，以实际为准）里找这些文件：`生化讲义.zip`、`27考研农学-生物化学-满分考点讲义-胡涛农学.zip` 及其 `(1)`、`(2)`、`(3)` 变体，包括 `.crdownload` 未完成残片。先列清单（文件名+字节数）留底。
-2. `.crdownload` 残片直接删（等于取消未完成的下载）；若被占用删不掉，等它下完后按完整副本处理。
-3. 完整的 zip 里只留一份：验它能正常打开（列出包内文件不报错），其余完整副本全删。**只许删上面点名的这些 zip 和残片，下载目录里其他文件一律不碰。**
-4. 把保留的那份解压到 `D:\agent-inbox\jiangyi\`，列出包内全部文件（文件名+大小）。
-5. 把解压出的 PDF 文件（有几个传几个）传到用户 Google Drive 新建文件夹「生化讲义」，核对文件数和大小。不分享、不生成公开链接。
+## 第二步：建 Drive 远程（只差用户点一次）
+- 远程名固定 `gdrive`，类型 drive，**scope 选 `drive.file`**（只许碰它自己建的文件，够用且最小权限），client_id / client_secret 留空（用 rclone 内置的）。
+- 参考：`rclone config create gdrive drive scope=drive.file`，它会拉起浏览器打开 Google 授权页。**授权页打开后你停下**：发一封 `[取单待确认] VID-004` 邮件到 jierryssb@gmail.com，写明「授权页已在电脑上打开，请用户选 jierryssb@gmail.com 账号并点允许」；同时保持命令等待，不要关。
+- 红线：选账号、点允许、可能出现的密码/验证，全部用户本人完成，你不代点授权、不代输密码、不代扫码。用户点完后流程会自动拿到令牌，你继续。
+- `rclone lsd gdrive:` 能列出根目录 = 授权成功。
+- 安全：生成的 rclone.conf 含刷新令牌，**只存本机**，不外发、不进回报、不写进任何邮件。
+
+## 第三步：补传（授权成功后无人值守完成）
+1. `gdrive:生化讲义音频` ← 传 `D:\agent-inbox\audio\` 里 35 个 mp3（不要传 `_extract.log`）。本地基准：35 个文件、合计 363,039,909 字节。
+2. `gdrive:生化讲义` ← 传 `D:\agent-inbox\jiangyi\` 里那个 PDF（235,411,423 字节）。
+3. 用 `rclone copy` 传，传完逐边核对：`rclone size` 和文件清单与本地一致（数量+字节数）。对不上就补传缺的，不要整批重来。
 
 ## 回报
-- 邮件发 jierryssb@gmail.com，标题 `[取单回报] VID-003`，正文分两部分写：第一部分（音频：已完成跳过 / 本次执行的结果，逐集 mp3 大小+时长、Drive 文件夹名）；第二部分（保留的 zip 确切路径+字节数、删掉的重复文件清单、解压出的文件清单、Drive「生化讲义」里的文件和大小）。
-- 本地存一份到 `D:\agent-inbox\reports\VID-003.md`；把本单 id 记入 `D:\agent-inbox\state.txt` 的 last_id。
-- 回报里不要出现 token。
+- 邮件发 jierryssb@gmail.com，标题 `[取单回报] VID-004`，写明：rclone 版本、两个文件夹各自的文件数与总字节（与本地基准是否一致）、失败/重试情况。
+- 本地存一份到 `D:\agent-inbox\reports\VID-004.md`；把本单 id 记入 `D:\agent-inbox\state.txt` 的 last_id。
+- 回报里不要出现 token、令牌、rclone.conf 内容。

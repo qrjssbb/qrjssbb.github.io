@@ -1,7 +1,5 @@
 id: TAPMCP-002
-token: path_segment=i-8a44f38faf4e16b7
-token=c910a74333cf1eb92c4f3a64
-url=https://qrjssbb.github.io/i-8a44f38faf4e16b7/current.md
+token: c910a74333cf1eb92c4f3a64
 status: open
 ---
 # 操作单 TAPMCP-002：安装 TapTap 官方开发工具（开放 MCP + Maker）

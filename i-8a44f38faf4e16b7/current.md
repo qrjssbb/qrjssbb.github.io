@@ -1,10 +1,10 @@
-id: TAPMCP-001
+id: TAPMCP-002
 token: path_segment=i-8a44f38faf4e16b7
 token=c910a74333cf1eb92c4f3a64
 url=https://qrjssbb.github.io/i-8a44f38faf4e16b7/current.md
 status: open
 ---
-# 操作单 TAPMCP-001：安装 TapTap 官方开发工具（开放 MCP + Maker）
+# 操作单 TAPMCP-002：安装 TapTap 官方开发工具（开放 MCP + Maker）
 
 ## 目标
 在这台 Windows 电脑上接入 TapTap 官方仓库 `taptap/instant-games-open-mcp` 的两套工具：
@@ -34,7 +34,7 @@ status: open
    - 如果它自动检测到本机已有 agent 并提出写 MCP 配置，可以允许它写；但不要为了这一步去安装新的 agent。
 3. **登录 / 授权步骤必须停下等用户本人**：
    - 如果出现设备码、二维码、浏览器授权、TapTap 登录确认，立即停止后续操作。
-   - 发邮件到 `jierryssb@gmail.com`，标题：`[取单待确认] TAPMCP-001 需要本人授权`
+   - 发邮件到 `jierryssb@gmail.com`，标题：`[取单待确认] TAPMCP-002 需要本人授权`
    - 邮件里写清：卡在哪一步、需要用户做什么、当前窗口不要关。
    - 不要代填账号、密码、验证码，不要索要或保存 token / JWT。
 4. **选择 app 步骤必须停下等用户选**：
@@ -66,7 +66,7 @@ status: open
 - 不删除文件；本单没有删除动作。
 
 ## 回报
-完成后发邮件到 `jierryssb@gmail.com`，标题：`[取单回报] TAPMCP-001 TapTap 开发工具安装`
+完成后发邮件到 `jierryssb@gmail.com`，标题：`[取单回报] TAPMCP-002 TapTap 开发工具安装`
 正文包含：
 - 主机名
 - Node / npx / Git / Python 版本
@@ -77,4 +77,4 @@ status: open
 - 是否添加了 marketplace 来源
 - 未完成项与错误原文摘要（如有）
 
-同一份回报另存到本机：`D:\agent-inbox\reports\TAPMCP-001.md`
+同一份回报另存到本机：`D:\agent-inbox\reports\TAPMCP-002.md`
